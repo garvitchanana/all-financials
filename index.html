@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="ALL FINANCIALS — Dense, high-leverage single-page financial intelligence terminal for Garvit Chanana.">
+  <title>ALL FINANCIALS — Private Intelligence Edition</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Lora:ital,wght@0,400;0,600;0,700;1,400&family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+
+  <!-- ── MOBILE OPTIMIZATION PATCH (≤768px) ──────────────── -->
+  <style>
+    @media (max-width: 768px) {
+
+      /* ── GRID COLLAPSE: Force single-column vertical feed ── */
+      .mosaic {
+        display: flex;
+        flex-direction: column;
+        gap: 0;
+      }
+      .block--hero,
+      .block--feature,
+      .block--standard,
+      .block--mini,
+      .acc {
+        grid-column: span 1 !important;
+        grid-row: span 1 !important;
+        width: 100%;
+      }
+
+      /* ── MASTHEAD: Scale title to prevent wrapping ────────── */
+      .masthead__title {
+        font-size: 2.5rem !important;
+        letter-spacing: -1px;
+        line-height: 0.9;
+      }
+      .masthead__sub1 {
+        font-size: 13px;
+      }
+      .masthead__sub2 {
+        font-size: 12px;
+      }
+      .masthead__date {
+        font-size: 10px;
+        letter-spacing: 1px;
+      }
+
+      /* ── PAGE: Tighter padding for mobile viewports ───────── */
+      .page {
+        padding: 0 12px 28px;
+      }
+
+      /* ── PHOTO FRAMES: Optimize to 220px height ──────────── */
+      .block__img,
+      .block--hero .block__img,
+      .block--feature .block__img {
+        height: 220px !important;
+      }
+
+      /* ── BLOCK PADDING: Compact for touch screens ────────── */
+      .block {
+        padding: 16px 14px;
+        border-right: none;
+      }
+
+      /* ── HERO HEADLINE: Scale down for readability ────────── */
+      .block--hero .block__hl {
+        font-size: 20px;
+        line-height: 1.25;
+      }
+      .block--feature .block__hl {
+        font-size: 16px;
+      }
+
+      /* ── DROP CAP: Reduce on small screens ───────────────── */
+      .block--hero .seg:first-of-type p::first-letter {
+        font-size: 2.4rem;
+      }
+
+      /* ── CONTROLS: Stack vertically ──────────────────────── */
+      .controls {
+        flex-direction: column;
+        gap: 10px;
+        align-items: stretch;
+        padding: 10px 12px;
+      }
+      .controls__search {
+        max-width: 100%;
+      }
+      .controls__actions {
+        flex-wrap: wrap;
+        justify-content: space-between;
+      }
+      .controls__ts {
+        font-size: 10px;
+        width: 100%;
+        text-align: center;
+        margin-bottom: 4px;
+      }
+
+      /* ── TICKER: Smaller font for mobile ─────────────────── */
+      .ticker-bar {
+        font-size: 10px;
+        padding: 8px 0;
+      }
+      .ticker-item {
+        margin-right: 28px;
+      }
+
+      /* ── ACCORDION: Mobile touch optimization ────────────── */
+      .acc__head {
+        padding: 10px 14px;
+        gap: 10px;
+      }
+      .acc__thumb {
+        width: 44px;
+        height: 30px;
+      }
+      .acc__title {
+        font-size: 13.5px;
+      }
+      .acc__tags .tag {
+        font-size: 8px;
+        padding: 1px 4px;
+      }
+      .acc__drawer-inner {
+        padding: 12px 14px 16px;
+      }
+
+      /* ── DESK SECTIONS: Tighter vertical rhythm ──────────── */
+      .desk {
+        margin-bottom: 32px;
+      }
+      .desk--dark {
+        padding: 18px 14px;
+        margin-left: -12px;
+        margin-right: -12px;
+        border-left: none;
+        border-right: none;
+      }
+
+      /* ── FRAMEWORK: Full-bleed on mobile ─────────────────── */
+      .framework {
+        padding: 14px 12px;
+      }
+      .framework__head {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 6px;
+      }
+
+      /* ── METRICS & TELEMETRY: Compact ────────────────────── */
+      .metrics {
+        padding: 8px 10px;
+      }
+      .metric__k {
+        font-size: 10px;
+      }
+      .metric__v {
+        font-size: 11px;
+      }
+
+      /* ── FOOTNOTES: Stacked on mobile ────────────────────── */
+      .foot {
+        flex-direction: column;
+        gap: 4px;
+        font-size: 10px;
+      }
+
+      /* ── FRAUD BULLETS: Tighter spacing ──────────────────── */
+      .fraud-item {
+        font-size: 12px;
+        margin-bottom: 10px;
+        padding-left: 10px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ── MARQUEE TICKER ──────────────────────────────────── -->
+  <div class="ticker-bar" id="ticker-bar">
+    <div class="ticker-track" id="ticker-track">
+      <span class="ticker-loading">Fetching market telemetry…</span>
+    </div>
+  </div>
+
+  <div class="page">
+
+    <!-- ── MASTHEAD ──────────────────────────────────────── -->
+    <header class="masthead">
+      <div class="rule rule--heavy"></div>
+      <div class="rule rule--thin"></div>
+      <div class="masthead__body">
+        <h1 class="masthead__title">ALL FINANCIALS</h1>
+        <p class="masthead__sub1">The Daily Financial Journal — Private Intelligence Edition</p>
+        <p class="masthead__sub2">Curated by Garvit Chanana</p>
+      </div>
+      <div class="rule rule--double"></div>
+      <div class="masthead__date" id="masthead-date">Sunday, May 31, 2026</div>
+      <div class="rule rule--double"></div>
+    </header>
+
+    <!-- ── CONTROLS ─────────────────────────────────────── -->
+    <div class="controls">
+      <div class="controls__search">
+        <svg class="controls__search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        <input id="search-input" type="text" placeholder="Search (Fed, SEBI, SaaS, HDFC…)" aria-label="Search">
+      </div>
+      <div class="controls__actions">
+        <span class="controls__ts" id="last-updated">Last updated: —</span>
+        <button id="refresh-btn" class="btn" title="Force refresh"><span class="btn__icon" id="refresh-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M23 4v6h-6"/><path d="M1 20v-6h6"/><path d="M3.51 9a9 9 0 0114.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0020.49 15"/></svg></span><span class="btn__label">Refresh Now</span></button>
+        <button id="theme-btn" class="btn" title="Toggle theme"><span class="btn__icon"><svg id="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg><svg id="icon-moon" class="hidden" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg></span><span class="btn__label" id="theme-label">Dark Mode</span></button>
+      </div>
+    </div>
+
+    <!-- ── SECTION 1: FRONT PAGE ─────────────────────────── -->
+    <section class="desk" id="sec-1">
+      <div class="desk__head"><h2 class="desk__title">THE FRONT PAGE</h2><div class="rule rule--section"></div></div>
+      <div class="mosaic" id="sec-1-grid"></div>
+    </section>
+
+    <!-- ── SECTION 2: DAILY BRIEF ────────────────────────── -->
+    <section class="desk" id="sec-2">
+      <div class="desk__head"><h2 class="desk__title">THE DAILY BRIEF</h2><span class="desk__kicker">10 critical developments — parsed for maximum leverage</span><div class="rule rule--section"></div></div>
+      <div class="mosaic" id="sec-2-grid"></div>
+    </section>
+
+    <!-- ── SECTION 3: REGULATORY & AUDIT ─────────────────── -->
+    <section class="desk" id="sec-3">
+      <div class="desk__head"><h2 class="desk__title">REGULATORY & AUDIT DESK</h2><div class="rule rule--section"></div></div>
+      <div class="mosaic" id="sec-3-grid"></div>
+    </section>
+
+    <!-- ── SECTION 4: FRAUD & FORENSICS ──────────────────── -->
+    <section class="desk desk--dark" id="sec-4">
+      <div class="desk__head"><h2 class="desk__title desk__title--light">GLOBAL CORPORATE FRAUD & COMPLIANCE WATCH</h2><div class="rule rule--section rule--light"></div></div>
+      <div class="mosaic" id="sec-4-grid"></div>
+    </section>
+
+    <!-- ── SECTION 5: STRATEGY & CAPITAL MARKETS ─────────── -->
+    <section class="desk" id="sec-5">
+      <div class="desk__head"><h2 class="desk__title">STRATEGY, AI & CAPITAL MARKETS DESK</h2><div class="rule rule--section"></div></div>
+      <div class="mosaic" id="sec-5-grid"></div>
+    </section>
+    <!-- ── SECTION 5b: LIVE WIRE (RSS) ────────────────────── -->
+    <section class="desk" id="sec-rss">
+      <div class="desk__head">
+        <h2 class="desk__title"><span class="rss-pulse" id="rss-pulse"></span> LIVE WIRE — FINANCIAL RSS FEED</h2>
+        <span class="desk__kicker" id="rss-status">Connecting to financial wire services…</span>
+        <div class="rule rule--section"></div>
+      </div>
+      <div class="mosaic" id="rss-grid"></div>
+    </section>
+
+
+    <section class="desk" id="sec-6">
+      <div class="desk__head"><h2 class="desk__title">PROFESSIONAL FRAMEWORK REFERENCE</h2><div class="rule rule--section"></div></div>
+      <div class="framework" id="framework-box">
+        <div class="framework__head">
+          <h3 class="framework__name">Core Framework Matrix</h3>
+          <span class="framework__tag" id="fw-tag">WEEK 22</span>
+        </div>
+        <div class="framework__body" id="fw-body"></div>
+      </div>
+    </section>
+
+    <!-- ── FOOTER ────────────────────────────────────────── -->
+    <footer class="page-footer">
+      <div class="rule rule--thin"></div>
+      <p class="page-footer__copy">© 2026 ALL FINANCIALS. Confidential Private Intelligence Resource.</p>
+      <p class="page-footer__disc">Privacy: Specific investment balances and private asset distributions are completely omitted from the UI. All displayed metrics correspond to public credit indices and market benchmarks.</p>
+    </footer>
+  </div>
+
+  <script src="data_templates.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
