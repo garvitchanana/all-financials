@@ -277,5 +277,18 @@
 
   <script src="data_templates.js"></script>
   <script src="app.js"></script>
+<script>
+  // Disable right-click context menus across the entire terminal
+  document.addEventListener('contextmenu', event => event.preventDefault());
+
+  // Intercept and block developer tool shortcut triggers
+  document.addEventListener('keydown', event => {
+    if (event.keyCode == 123 || // Blocks F12
+        (event.ctrlKey && event.shiftKey && [73, 74, 67].includes(event.keyCode)) || // Blocks Ctrl+Shift+I/J/C
+        (event.ctrlKey && event.keyCode == 85)) { // Blocks Ctrl+U (View Source)
+      event.preventDefault();
+    }
+  });
+</script>
 </body>
 </html>
