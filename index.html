@@ -1,295 +1,375 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="ALL FINANCIALS — Dense, high-leverage single-page financial intelligence terminal for Garvit Chanana.">
+  <meta name="description" content="ALL FINANCIALS — Simplistic Luxury Financial Intelligence Dashboard for Garvit Chanana.">
   <title>ALL FINANCIALS — Private Intelligence Edition</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Lora:ital,wght@0,400;0,600;0,700;1,400&family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,900;1,400&family=Outfit:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
-
-  <!-- ── MOBILE OPTIMIZATION PATCH (≤768px) ──────────────── -->
-  <style>
-    @media (max-width: 768px) {
-
-      /* ── GRID COLLAPSE: Force single-column vertical feed ── */
-      .mosaic {
-        display: flex;
-        flex-direction: column;
-        gap: 0;
-      }
-      .block--hero,
-      .block--feature,
-      .block--standard,
-      .block--mini,
-      .acc {
-        grid-column: span 1 !important;
-        grid-row: span 1 !important;
-        width: 100%;
-      }
-
-      /* ── MASTHEAD: Scale title to prevent wrapping ────────── */
-      .masthead__title {
-        font-size: 2.5rem !important;
-        letter-spacing: -1px;
-        line-height: 0.9;
-      }
-      .masthead__sub1 {
-        font-size: 13px;
-      }
-      .masthead__sub2 {
-        font-size: 12px;
-      }
-      .masthead__date {
-        font-size: 10px;
-        letter-spacing: 1px;
-      }
-
-      /* ── PAGE: Tighter padding for mobile viewports ───────── */
-      .page {
-        padding: 0 12px 28px;
-      }
-
-      /* ── PHOTO FRAMES: Optimize to 220px height ──────────── */
-      .block__img,
-      .block--hero .block__img,
-      .block--feature .block__img {
-        height: 220px !important;
-      }
-
-      /* ── BLOCK PADDING: Compact for touch screens ────────── */
-      .block {
-        padding: 16px 14px;
-        border-right: none;
-      }
-
-      /* ── HERO HEADLINE: Scale down for readability ────────── */
-      .block--hero .block__hl {
-        font-size: 20px;
-        line-height: 1.25;
-      }
-      .block--feature .block__hl {
-        font-size: 16px;
-      }
-
-      /* ── DROP CAP: Reduce on small screens ───────────────── */
-      .block--hero .seg:first-of-type p::first-letter {
-        font-size: 2.4rem;
-      }
-
-      /* ── CONTROLS: Stack vertically ──────────────────────── */
-      .controls {
-        flex-direction: column;
-        gap: 10px;
-        align-items: stretch;
-        padding: 10px 12px;
-      }
-      .controls__search {
-        max-width: 100%;
-      }
-      .controls__actions {
-        flex-wrap: wrap;
-        justify-content: space-between;
-      }
-      .controls__ts {
-        font-size: 10px;
-        width: 100%;
-        text-align: center;
-        margin-bottom: 4px;
-      }
-
-      /* ── TICKER: Smaller font for mobile ─────────────────── */
-      .ticker-bar {
-        font-size: 10px;
-        padding: 8px 0;
-      }
-      .ticker-item {
-        margin-right: 28px;
-      }
-
-      /* ── ACCORDION: Mobile touch optimization ────────────── */
-      .acc__head {
-        padding: 10px 14px;
-        gap: 10px;
-      }
-      .acc__thumb {
-        width: 44px;
-        height: 30px;
-      }
-      .acc__title {
-        font-size: 13.5px;
-      }
-      .acc__tags .tag {
-        font-size: 8px;
-        padding: 1px 4px;
-      }
-      .acc__drawer-inner {
-        padding: 12px 14px 16px;
-      }
-
-      /* ── DESK SECTIONS: Tighter vertical rhythm ──────────── */
-      .desk {
-        margin-bottom: 32px;
-      }
-      .desk--dark {
-        padding: 18px 14px;
-        margin-left: -12px;
-        margin-right: -12px;
-        border-left: none;
-        border-right: none;
-      }
-
-      /* ── FRAMEWORK: Full-bleed on mobile ─────────────────── */
-      .framework {
-        padding: 14px 12px;
-      }
-      .framework__head {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 6px;
-      }
-
-      /* ── METRICS & TELEMETRY: Compact ────────────────────── */
-      .metrics {
-        padding: 8px 10px;
-      }
-      .metric__k {
-        font-size: 10px;
-      }
-      .metric__v {
-        font-size: 11px;
-      }
-
-      /* ── FOOTNOTES: Stacked on mobile ────────────────────── */
-      .foot {
-        flex-direction: column;
-        gap: 4px;
-        font-size: 10px;
-      }
-
-      /* ── FRAUD BULLETS: Tighter spacing ──────────────────── */
-      .fraud-item {
-        font-size: 12px;
-        margin-bottom: 10px;
-        padding-left: 10px;
-      }
-    }
-  </style>
 </head>
 <body>
 
   <!-- ── MARQUEE TICKER ──────────────────────────────────── -->
   <div class="ticker-bar" id="ticker-bar">
     <div class="ticker-track" id="ticker-track">
-      <span class="ticker-loading">Fetching market telemetry…</span>
+      <span class="ticker-loading">Syncing private capital markets telemetry…</span>
     </div>
   </div>
 
-  <div class="page">
+  <!-- Ticker Sparkline Analytics Overlay Drawer -->
+  <div class="ticker-analytics collapsed" id="ticker-analytics">
+    <div class="ticker-analytics__inner">
+      <div class="ticker-analytics__chart-box">
+        <svg id="sparkline-svg" class="sparkline-svg" viewBox="0 0 400 100">
+          <defs>
+            <!-- Glowing gradient fills for sparkline area -->
+            <linearGradient id="sparkline-grad-up" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="var(--green)" stop-opacity="0.15"></stop>
+              <stop offset="100%" stop-color="var(--green)" stop-opacity="0.0"></stop>
+            </linearGradient>
+            <linearGradient id="sparkline-grad-dn" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="var(--red)" stop-opacity="0.15"></stop>
+              <stop offset="100%" stop-color="var(--red)" stop-opacity="0.0"></stop>
+            </linearGradient>
+            <!-- High-tech dotted background grid -->
+            <pattern id="sparkline-dots" width="20" height="20" patternUnits="userSpaceOnUse">
+              <circle cx="2" cy="2" r="0.75" fill="var(--border)" opacity="0.4"></circle>
+            </pattern>
+          </defs>
+          <!-- Grid Background -->
+          <rect width="100%" height="100%" fill="url(#sparkline-dots)"></rect>
+          <path id="sparkline-area" d="" fill="none" opacity="0.85"></path>
+          <path id="sparkline-path" d="" fill="none" stroke="var(--accent)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"></path>
+        </svg>
+      </div>
+      <div class="ticker-analytics__stats">
+        <h4 id="ticker-analytics-title" class="ticker-analytics__title">-</h4>
+        <div class="ticker-analytics__metrics">
+          <div class="ticker-analytics__metric"><span>CMP:</span> <strong id="ticker-analytics-cmp">-</strong></div>
+          <div class="ticker-analytics__metric"><span>Change:</span> <strong id="ticker-analytics-chg">-</strong></div>
+          <div class="ticker-analytics__metric"><span>24h High:</span> <span id="ticker-analytics-high">-</span></div>
+          <div class="ticker-analytics__metric"><span>24h Low:</span> <span id="ticker-analytics-low">-</span></div>
+        </div>
+      </div>
+      <button class="ticker-analytics__close" id="ticker-analytics-close" aria-label="Close Analytics">&times;</button>
+    </div>
+  </div>
 
-    <!-- ── MASTHEAD ──────────────────────────────────────── -->
+  <!-- ── TWO-COLUMN SPLIT WORKSPACE ──────────────────────── -->
+  <div class="workspace">
+
+    <!-- Centered Editorial Luxury Masthead -->
     <header class="masthead">
       <div class="rule rule--heavy"></div>
       <div class="rule rule--thin"></div>
       <div class="masthead__body">
         <h1 class="masthead__title">ALL FINANCIALS</h1>
-        <p class="masthead__sub1">The Daily Financial Journal — Private Intelligence Edition</p>
-        <p class="masthead__sub2">Curated by Garvit Chanana</p>
+        <p class="masthead__sub1">The Private Intelligence Bulletin</p>
+        <p class="masthead__sub2">Curated for Garvit Chanana</p>
       </div>
       <div class="rule rule--double"></div>
-      <div class="masthead__date" id="masthead-date">Sunday, May 31, 2026</div>
+      <div class="masthead__date" id="masthead-date">Monday, June 1, 2026</div>
       <div class="rule rule--double"></div>
     </header>
 
-    <!-- ── CONTROLS ─────────────────────────────────────── -->
-    <div class="controls">
+    <!-- Top Command & Control Ribbon (Sleek Horizontal Toolbar) -->
+    <div class="top-control-banner">
       <div class="controls__search">
-        <svg class="controls__search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-        <input id="search-input" type="text" placeholder="Search (Fed, SEBI, SaaS, HDFC…)" aria-label="Search">
+        <svg class="controls__search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        <input id="search-input" type="text" placeholder="Search (Fed, SEBI, SaaS…)" aria-label="Search">
       </div>
+      
+      <div class="controls__horizon">
+        <span class="slider-label" id="slider-label">Horizon: Live (0h)</span>
+        <input type="range" id="horizon-slider" min="0" max="72" value="0" step="6" class="premium-slider" aria-label="Time Horizon Slider">
+      </div>
+      
       <div class="controls__actions">
-        <span class="controls__ts" id="last-updated">Last updated: —</span>
-        <button id="refresh-btn" class="btn" title="Force refresh"><span class="btn__icon" id="refresh-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M23 4v6h-6"/><path d="M1 20v-6h6"/><path d="M3.51 9a9 9 0 0114.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0020.49 15"/></svg></span><span class="btn__label">Refresh Now</span></button>
-        <button id="theme-btn" class="btn" title="Toggle theme"><span class="btn__icon"><svg id="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg><svg id="icon-moon" class="hidden" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg></span><span class="btn__label" id="theme-label">Dark Mode</span></button>
+        <button id="refresh-btn" class="btn" title="Force refresh"><span class="btn__icon" id="refresh-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M23 4v6h-6"/><path d="M1 20v-6h6"/><path d="M3.51 9a9 9 0 0114.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0020.49 15"/></svg></span><span class="btn__label">Refresh Now</span></button>
+        <button id="theme-btn" class="btn" title="Toggle theme"><span class="btn__icon"><svg id="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg><svg id="icon-moon" class="hidden" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg></span><span class="btn__label" id="theme-label">Dark Mode</span></button>
+        <button id="briefing-toggle-btn" class="btn" title="Toggle Executive Briefing"><span class="btn__label" id="briefing-toggle-label">Hide Briefing</span></button>
+        <button id="ingest-toggle-btn" class="btn btn--burgundy" title="Ingest Document"><span class="btn__label">Ingest Document</span></button>
+      </div>
+      <span class="controls__ts" id="last-updated">Last synced: —</span>
+    </div>
+
+    <!-- Hidden Telemetry Elements to prevent script hydration failures -->
+    <div class="hidden" style="display:none!important;">
+      <svg><circle id="gauge-fill" cx="0" cy="0" r="0"></circle></svg>
+      <span id="gauge-value"></span>
+      <span id="gauge-desc"></span>
+      <span id="metric-exposure"></span>
+      <span id="metric-fail-prob"></span>
+      <span id="metric-crit-count"></span>
+      <span id="metric-repricing"></span>
+    </div>
+
+    <!-- Collapsible Agentic Document Ingest Panel -->
+    <div class="collapsible-intake collapsed" id="collapsible-intake">
+      <div class="intake-card">
+        <div class="intake-card__header">
+          <h3 class="widget-title">Agentic Document Intake</h3>
+          <p class="widget-desc">Select raw regulatory PDF circulars to execute offline OCR Layout analysis & LLM compliance extraction.</p>
+        </div>
+        <div class="agentic-box">
+          <select id="pdf-template-select" class="pdf-select" aria-label="Select PDF Circular Template">
+            <option value="" disabled selected>-- Select PDF Template --</option>
+            <option value="pdf_rbi">RBI-Infrastructure-Provisions-FY26.pdf</option>
+            <option value="pdf_sebi">SEBI-Concentrated-FPI-UBO.pdf</option>
+            <option value="pdf_mca">MCA-Tamper-Proof-Audit-Trail.pdf</option>
+            <option value="pdf_nclt">NCLT-Prepackaged-Insolvency.pdf</option>
+            <option value="pdf_nfra">NFRA-MSME-Liabilities-Order.pdf</option>
+          </select>
+          <button id="pdf-parse-btn" class="btn btn--burgundy" disabled>Ingest PDF</button>
+        </div>
+        <div class="agentic-console hidden" id="console-box">
+          <div class="console-header"><span>Agent Core Terminal v2.1</span><span class="console-dot"></span></div>
+          <div class="console-log" id="console-log"></div>
+        </div>
       </div>
     </div>
 
-    <!-- ── SECTION 1: FRONT PAGE ─────────────────────────── -->
-    <section class="desk" id="sec-1">
-      <div class="desk__head"><h2 class="desk__title">THE FRONT PAGE</h2><div class="rule rule--section"></div></div>
-      <div class="mosaic" id="sec-1-grid"></div>
-    </section>
+    <!-- ── MAIN EDITORIAL WORKSPACE ────────────────────────── -->
+    <main class="workspace__content">
 
-    <!-- ── SECTION 2: DAILY BRIEF ────────────────────────── -->
-    <section class="desk" id="sec-2">
-      <div class="desk__head"><h2 class="desk__title">THE DAILY BRIEF</h2><span class="desk__kicker">10 critical developments — parsed for maximum leverage</span><div class="rule rule--section"></div></div>
-      <div class="mosaic" id="sec-2-grid"></div>
-    </section>
-
-    <!-- ── SECTION 3: REGULATORY & AUDIT ─────────────────── -->
-    <section class="desk" id="sec-3">
-      <div class="desk__head"><h2 class="desk__title">REGULATORY & AUDIT DESK</h2><div class="rule rule--section"></div></div>
-      <div class="mosaic" id="sec-3-grid"></div>
-    </section>
-
-    <!-- ── SECTION 4: FRAUD & FORENSICS ──────────────────── -->
-    <section class="desk desk--dark" id="sec-4">
-      <div class="desk__head"><h2 class="desk__title desk__title--light">GLOBAL CORPORATE FRAUD & COMPLIANCE WATCH</h2><div class="rule rule--section rule--light"></div></div>
-      <div class="mosaic" id="sec-4-grid"></div>
-    </section>
-
-    <!-- ── SECTION 5: STRATEGY & CAPITAL MARKETS ─────────── -->
-    <section class="desk" id="sec-5">
-      <div class="desk__head"><h2 class="desk__title">STRATEGY, AI & CAPITAL MARKETS DESK</h2><div class="rule rule--section"></div></div>
-      <div class="mosaic" id="sec-5-grid"></div>
-    </section>
-    <!-- ── SECTION 5b: LIVE WIRE (RSS) ────────────────────── -->
-    <section class="desk" id="sec-rss">
-      <div class="desk__head">
-        <h2 class="desk__title"><span class="rss-pulse" id="rss-pulse"></span> LIVE WIRE — FINANCIAL RSS FEED</h2>
-        <span class="desk__kicker" id="rss-status">Connecting to financial wire services…</span>
-        <div class="rule rule--section"></div>
+      <!-- Glowing Crawl-Sync Progress Bar Indicator -->
+      <div class="crawl-progress-container">
+        <div class="crawl-progress-bar" id="crawl-progress-bar"></div>
       </div>
-      <div class="mosaic" id="rss-grid"></div>
-    </section>
 
+      <!-- Top Horizontal Luxury Navigation Tabs -->
+      <nav class="desk-tabs" id="desk-tabs">
+        <button class="desk-tab active" data-desk="all">All Desks</button>
+        <button class="desk-tab" data-desk="front">The Front Page</button>
+        <button class="desk-tab" data-desk="brief">The Daily Brief</button>
+        <button class="desk-tab" data-desk="audit">Audit Desk</button>
+        <button class="desk-tab" data-desk="fraud">Fraud Ledger</button>
+        <button class="desk-tab" data-desk="strategy">Strategy & AI</button>
+        <button class="desk-tab" data-desk="livewire">Live Wire RSS</button>
+      </nav>
 
-    <section class="desk" id="sec-6">
-      <div class="desk__head"><h2 class="desk__title">PROFESSIONAL FRAMEWORK REFERENCE</h2><div class="rule rule--section"></div></div>
-      <div class="framework" id="framework-box">
-        <div class="framework__head">
-          <h3 class="framework__name">Core Framework Matrix</h3>
-          <span class="framework__tag" id="fw-tag">WEEK 22</span>
+      <div class="workspace__editorial-grid">
+        
+        <!-- Wide Executive Summary Banner with SVG Gooey Taffy stretching -->
+        <div class="briefing-gooey-container" id="briefing-gooey-container">
+          <div class="briefing-goo-anchor"></div>
+          <aside class="workspace__side-briefing" id="briefing-panel">
+            <!-- Floating left handle pull tab for dynamic sidebar toggle -->
+            <div class="briefing-handle" id="briefing-handle-btn" title="Toggle Executive Briefing">
+              <span class="briefing-handle__text">EXECUTIVE BRIEFING</span>
+              <span class="briefing-handle__arrow">▶</span>
+            </div>
+            <div class="briefing-card">
+              <div class="briefing-card__left">
+                <div class="briefing-card__header">
+                  <h3 class="widget-title">EXECUTIVE BRIEFING</h3>
+                  <p class="widget-desc">Daily parsed macro & startup intelligence. Explaining today's combined market impact like you are 10.</p>
+                </div>
+                <div class="rule rule--thin" style="margin: 12px 0;"></div>
+
+                <div class="briefing-section">
+                  <h4 class="briefing-section__title">Bird's-Eye View Brief</h4>
+                  <div class="briefing-section__body" id="briefing-birdseye">
+                    Click 'Refresh Now' to generate today's live executive summary.
+                  </div>
+                </div>
+                
+                <div class="briefing-section">
+                  <h4 class="briefing-section__title">Takeaway Brief</h4>
+                  <div class="briefing-section__body" id="briefing-takeaway">
+                    Awaiting intelligence feed sync...
+                  </div>
+                </div>
+              </div>
+
+              <div class="briefing-card__right">
+                <div class="briefing-section" style="margin-top: 0;">
+                  <h4 class="briefing-section__title">The Playful Story (ELI10)</h4>
+                  <div class="briefing-section__body" id="briefing-story">
+                    Click 'Refresh Now' to generate today's live executive summary.
+                  </div>
+                </div>
+
+                <div class="briefing-section">
+                  <h4 class="briefing-section__title">Impact on Indian Markets</h4>
+                  <div class="briefing-section__body" id="briefing-market-impact">
+                    Awaiting intelligence feed sync...
+                  </div>
+                </div>
+
+                <div class="briefing-section">
+                  <h4 class="briefing-section__title">Impact on Startups & B2B</h4>
+                  <div class="briefing-section__body" id="briefing-startup-impact">
+                    Awaiting intelligence feed sync...
+                  </div>
+                </div>
+              </div>
+            </div>
+          </aside>
         </div>
-        <div class="framework__body" id="fw-body"></div>
-      </div>
-    </section>
 
-    <!-- ── FOOTER ────────────────────────────────────────── -->
-    <footer class="page-footer">
-      <div class="rule rule--thin"></div>
-      <p class="page-footer__copy">© 2026 ALL FINANCIALS. Confidential Private Intelligence Resource.</p>
-      <p class="page-footer__disc">Privacy: Specific investment balances and private asset distributions are completely omitted from the UI. All displayed metrics correspond to public credit indices and market benchmarks.</p>
-    </footer>
+        <!-- Left Column: Main Compliance Desks -->
+        <div class="workspace__main-desks">
+          <!-- ── SECTION 1: FRONT PAGE ─────────────────────────── -->
+          <section class="desk" id="sec-1">
+            <div class="desk__head"><h2 class="desk__title">THE FRONT PAGE</h2><div class="rule rule--section"></div></div>
+            <div class="mosaic" id="sec-1-grid">
+              <div class="wire-empty">ALL FINANCIALS Terminal online. Awaiting private intelligence feed synchronization. Click 'Refresh Now' to sync wire services.</div>
+            </div>
+          </section>
+
+          <!-- ── SECTION 2: DAILY BRIEF ────────────────────────── -->
+          <section class="desk" id="sec-2">
+            <div class="desk__head"><h2 class="desk__title">THE DAILY BRIEF</h2><span class="desk__kicker">Critical developments — parsed for maximum leverage</span><div class="rule rule--section"></div></div>
+            <div class="mosaic" id="sec-2-grid">
+              <div class="wire-empty">No daily brief records loaded. Sync terminal feed.</div>
+            </div>
+          </section>
+
+          <!-- ── SECTION 3: REGULATORY & AUDIT ─────────────────── -->
+          <section class="desk" id="sec-3">
+            <div class="desk__head"><h2 class="desk__title">REGULATORY & AUDIT DESK</h2><div class="rule rule--section"></div></div>
+            <div class="mosaic" id="sec-3-grid">
+              <div class="wire-empty">No regulatory logs sync'd.</div>
+            </div>
+          </section>
+
+          <!-- ── SECTION 4: FRAUD & FORENSICS ──────────────────── -->
+          <section class="desk desk--dark" id="sec-4">
+            <div class="desk__head"><h2 class="desk__title desk__title--light">GLOBAL CORPORATE FRAUD & COMPLIANCE WATCH</h2><div class="rule rule--section rule--light"></div></div>
+            <div class="mosaic" id="sec-4-grid">
+              <div class="wire-empty">Forensic watches offline. Sync required.</div>
+            </div>
+          </section>
+
+          <!-- ── SECTION 5: STRATEGY & CAPITAL MARKETS ─────────── -->
+          <section class="desk" id="sec-5">
+            <div class="desk__head"><h2 class="desk__title">STRATEGY, AI & CAPITAL MARKETS DESK</h2><div class="rule rule--section"></div></div>
+            <div class="mosaic" id="sec-5-grid">
+              <div class="wire-empty">Corporate strategy telemetry offline.</div>
+            </div>
+          </section>
+
+          <!-- ── SECTION 5b: LIVE WIRE (RSS) ────────────────────── -->
+          <section class="desk" id="sec-rss">
+            <div class="desk__head">
+              <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; margin-bottom: 6px;">
+                <h2 class="desk__title" style="margin-bottom: 0;"><span class="rss-pulse" id="rss-pulse"></span> LIVE WIRE — FINANCIAL RSS FEED</h2>
+                <div style="display: flex; align-items: center; gap: 8px;">
+                  <span style="font: 700 10.5px var(--sans); text-transform: uppercase; color: var(--muted); letter-spacing: 0.5px;">Sort By:</span>
+                  <select id="rss-sort-select" class="rss-select" aria-label="Sort RSS news by criteria">
+                    <option value="recency">Recommended: Most Recent</option>
+                    <option value="regulatory">High Regulatory Impact</option>
+                    <option value="regulators_first">Regulators First</option>
+                    <option value="density">Information Density</option>
+                  </select>
+                </div>
+              </div>
+              <span class="desk__kicker" id="rss-status">Connecting to financial wire services…</span>
+              <div class="rule rule--section"></div>
+            </div>
+            <div class="mosaic" id="rss-grid">
+              <div class="wire-empty">Connecting to financial wire services…</div>
+            </div>
+          </section>
+
+          <!-- ── SECTION 7: FRAMEWORK REFERENCE ─────────────────── -->
+          <section class="desk" id="sec-6">
+            <div class="desk__head"><h2 class="desk__title">PROFESSIONAL FRAMEWORK REFERENCE</h2><div class="rule rule--section"></div></div>
+            <div class="framework" id="framework-box">
+              <div class="framework__head">
+                <h3 class="framework__name">Core Framework Matrix</h3>
+                <span class="framework__tag" id="fw-tag">WEEK 22</span>
+              </div>
+              <div class="framework__body" id="fw-body"></div>
+            </div>
+          </section>
+        </div>
+
+
+
+      </div>
+
+      <!-- ── FOOTER ────────────────────────────────────────── -->
+      <footer class="page-footer">
+        <div class="rule rule--thin"></div>
+        <p class="page-footer__copy">© 2026 ALL FINANCIALS. Confidential Private Intelligence Resource.</p>
+        <p class="page-footer__disc">Privacy: Specific investment balances and private asset distributions are completely omitted from the UI. All displayed metrics correspond to public credit indices and market benchmarks.</p>
+      </footer>
+
+    </main>
+
   </div>
 
+  <!-- Sleek absolute side-drawer for Explain Like I'm 10 (ELI10) -->
+  <div class="simulator-drawer collapsed" id="simulator-drawer">
+    <div class="simulator-drawer__header">
+      <h3 class="simulator-drawer__title">Explain Like I'm 10 (ELI10)</h3>
+      <button class="simulator-drawer__close" id="simulator-drawer-close" aria-label="Close Drawer">&times;</button>
+    </div>
+    <div class="simulator-drawer__body">
+      <div class="simulator-article-context">
+        <h4 class="simulator-context-title" id="sim-context-title">Selected Article</h4>
+        <p id="sim-context-desc" class="hidden">Analysis of underlying balance sheet risk.</p>
+      </div>
+
+      <!-- Upgraded ELI10 simplified explanation blocks -->
+      <div class="eli10-container">
+        <div class="eli10-section">
+          <h4 class="eli10-section__title">The Playful Analogy</h4>
+          <div class="eli10-section__analogy" id="eli10-analogy">
+            Syncing analogy...
+          </div>
+        </div>
+        
+        <div class="eli10-section">
+          <h4 class="eli10-section__title">Simplified Breakdown</h4>
+          <div class="eli10-section__breakdown" id="eli10-breakdown">
+            Syncing breakdown...
+          </div>
+        </div>
+        
+        <div class="eli10-section">
+          <h4 class="eli10-section__title">Why It Matters to You</h4>
+          <div class="eli10-section__takeaway" id="eli10-takeaway">
+            Syncing takeaway...
+          </div>
+        </div>
+      </div>
+
+      <!-- Hidden B2B Sliders & results to prevent app.js hydration errors -->
+      <div class="hidden" style="display:none!important;">
+        <input type="range" id="sim-slider-1" min="10" max="90" value="50">
+        <input type="range" id="sim-slider-2" min="400" max="1000" value="650" step="25">
+        <input type="range" id="sim-slider-3" min="10" max="50" value="10" step="5">
+        <span id="sim-val-1"></span>
+        <span id="sim-val-2"></span>
+        <span id="sim-val-3"></span>
+        <span id="sim-res-margin"></span>
+        <span id="sim-res-provision"></span>
+        <span id="sim-res-penalty"></span>
+        <div id="sim-status-fill"></div>
+        <span id="sim-status-text"></span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Hidden SVG for Gooey Taffy Transition Filter -->
+  <svg xmlns="http://www.w3.org/2000/svg" version="1.1" style="display:none;">
+    <defs>
+      <filter id="gooey">
+        <feGaussianBlur in="SourceGraphic" stdDeviation="15" result="blur" />
+        <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 35 -15" result="goo" />
+        <feBlend in="SourceGraphic" in2="goo" />
+      </filter>
+    </defs>
+  </svg>
+
+  <script src="news_pool.js"></script>
   <script src="data_templates.js"></script>
   <script src="app.js"></script>
-<script>
-  // Disable right-click context menus across the entire terminal
-  document.addEventListener('contextmenu', event => event.preventDefault());
-
-  // Intercept and block developer tool shortcut triggers
-  document.addEventListener('keydown', event => {
-    if (event.keyCode == 123 || // Blocks F12
-        (event.ctrlKey && event.shiftKey && [73, 74, 67].includes(event.keyCode)) || // Blocks Ctrl+Shift+I/J/C
-        (event.ctrlKey && event.keyCode == 85)) { // Blocks Ctrl+U (View Source)
-      event.preventDefault();
-    }
-  });
-</script>
 </body>
 </html>
